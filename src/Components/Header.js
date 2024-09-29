@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import { Navbar, Nav, FormControl, Container, Form, Button } from "react-bootstrap";
 import logo from "./aoh_icon.ico"
 import styled from 'styled-components';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+import Home from '../Pages/Home'
+import Play from '../Pages/Play'
+import About from '../Pages/About'
+import Blog from '../Pages/Blog'
 
 const StyledNavbar = styled(Navbar)`
     height: 65px;
@@ -50,7 +56,8 @@ const StyledButtonSignIn = styled(Button)`
 export default class Header extends Component {
     render() {
         return (
-            <StyledNavbar collapseOnSelect fixed="top" expand="md">
+            <>
+            <StyledNavbar collapseOnSelect /* fixed="top" */ expand="md">
                 <NavbarContent>
                     <Navbar.Brand href="/">
                         <img
@@ -76,6 +83,16 @@ export default class Header extends Component {
                     </Navbar.Collapse>
                 </NavbarContent>
             </StyledNavbar>
-        )
+            
+            <Router>
+                <Routes>
+                    <Route path='/' element={<Home/>}/>
+                    <Route path='/play' element={<Play/>}/>
+                    <Route path='/about' element={<About/>}/>
+                    <Route path='/blog' element={<Blog/>}/>
+                </Routes>
+            </Router>
+        </>
+        );
     }
 }
